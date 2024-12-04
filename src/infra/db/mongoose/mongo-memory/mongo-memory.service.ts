@@ -1,4 +1,4 @@
-import { Connection, connect } from 'mongoose';
+import { connect, Connection } from 'mongoose';
 
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
@@ -8,7 +8,7 @@ export class MongoInMemory {
     private mongoConnection: Connection,
   ) {}
 
-  public static async startServer(): Promise<MongoInMemory> {
+  public async startServer(): Promise<MongoInMemory> {
     const mongoServer = await MongoMemoryServer.create();
     const mongoUri = mongoServer.getUri();
     const mongoConnection = (await connect(mongoUri)).connection;
